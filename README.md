@@ -4,8 +4,6 @@
 
 With ReactFly, it only takes a few lines of JavaScript to integrate Flybase data into React apps via the `ReactFlyMixin`.
 
-We've included a sample of using Flybase without the `ReactFlyMixin` as well as how to use the `ReactFlyMixin`, you can use whichever it most comfortable.
-
 ## Table of Contents
 
  * [Getting Started With Flybase](#getting-started-with-flybase)
@@ -46,4 +44,4 @@ In order to use ReactFly in your project, you need to include the following file
 
 ## Examples
 
-* [Todo App](/example)
+* [Todo App](/examples)

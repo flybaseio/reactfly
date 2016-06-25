@@ -12,16 +12,6 @@
 }(this, function() {
 	'use strict';
 
-	function _getKey(snapshot) {
-		var key = snapshot.key();
-		return key;
-	}
-
-	function _getRef(flybaseRef) {
-		var ref = flybaseRef;
-		return ref;
-	}
-
 	function _indexForKey(list, key) {
 		for (var i = 0, length = list.length; i < length; ++i) {
 			if (list[i]['.key'] === key) {
@@ -68,11 +58,7 @@
 
 
 	function _objectValue(bindVar, snapshot) {
-		var key = _getKey(snapshot);
-		var value = snapshot.value();
-
-		this.data[bindVar] = _createRecord(key, value);
-
+		this.data[bindVar] = _createRecord( snapshot.key(), snapshot.value() );
 		this.setState(this.data);
 	}
 
@@ -80,21 +66,15 @@
 	function _arrayValue(bindVar, dataSnapshot) {
 		var items = [];
 		dataSnapshot.forEach(function(snapshot) {
-			var key = _getKey(snapshot);
-			var value = snapshot.value();
-			items.push( _createRecord(key, value) );
+			var item = _createRecord( snapshot.key(), snapshot.value() );
+			items.push( item );
 		}.bind(this));
 		this.data[bindVar] = items;
 		this.setState(this.data);
-
 	}
 
-
-	function _arrayChildAdded(bindVar, snapshot, previousChildKey) {
-		var key = _getKey(snapshot);
-		var value = snapshot.value();
+	function _arrayAdded(bindVar, snapshot, previousChildKey) {
 		var array = this.data[bindVar];
-
 		var insertionIndex;
 		if (previousChildKey === null) {
 			insertionIndex = 0;
@@ -102,55 +82,24 @@
 			var previousChildIndex = _indexForKey(array, previousChildKey);
 			insertionIndex = previousChildIndex + 1;
 		}
-
-		array.splice(insertionIndex, 0, _createRecord(key, value));
-
-		this.setState(this.data);
+		var item = _createRecord( snapshot.key(), snapshot.value() );
+		array.splice(insertionIndex, 0, item);
+			this.setState(this.data);
 	}
 
-	function _arrayChildRemoved(bindVar, snapshot) {
+	function _arrayRemoved(bindVar, snapshot) {
 		var array = this.data[bindVar];
-
-		var index = _indexForKey(array, _getKey(snapshot));
-
+		var index = _indexForKey(array, snapshot.key() );
 		array.splice(index, 1);
-
 		this.setState(this.data);
 	}
 
-	function _arrayChildChanged(bindVar, snapshot) {
-		var key = _getKey(snapshot);
-		var value = snapshot.value();
+	function _arrayChanged(bindVar, snapshot) {
 		var array = this.data[bindVar];
-
-		var index = _indexForKey(array, key);
-
-		array[index] = _createRecord(key, value);
-
+		var index = _indexForKey(array, snapshot.key() );
+		array[index] = _createRecord( snapshot.key(), snapshot.value() );
 		this.setState(this.data);
 	}
-
-	function _arrayChildMoved(bindVar, snapshot, previousChildKey) {
-		var key = _getKey(snapshot);
-		var array = this.data[bindVar];
-
-		var currentIndex = _indexForKey(array, key);
-
-		var record = array.splice(currentIndex, 1)[0];
-
-		var insertionIndex;
-		if (previousChildKey === null) {
-			insertionIndex = 0;
-		} else {
-			var previousChildIndex = _indexForKey(array, previousChildKey);
-			insertionIndex = previousChildIndex + 1;
-		}
-
-		array.splice(insertionIndex, 0, record);
-
-		this.setState(this.data);
-	}
-
 
 	function _bind(flybaseRef, bindVar, cancelCallback, bindAsArray) {
 		if (Object.prototype.toString.call(flybaseRef) !== '[object Object]') {
@@ -176,9 +125,9 @@
 
 			this.flybaseListeners[bindVar] = {
 				value: flybaseRef.on('value', _arrayValue.bind(this, bindVar), cancelCallback),
-				added: flybaseRef.on('added', _arrayChildAdded.bind(this, bindVar), cancelCallback),
-				removed: flybaseRef.on('removed', _arrayChildRemoved.bind(this, bindVar), cancelCallback),
-				changed: flybaseRef.on('changed', _arrayChildChanged.bind(this, bindVar), cancelCallback),
+				added: flybaseRef.on('added', _arrayAdded.bind(this, bindVar), cancelCallback),
+				removed: flybaseRef.on('removed', _arrayRemoved.bind(this, bindVar), cancelCallback),
+				changed: flybaseRef.on('changed', _arrayChanged.bind(this, bindVar), cancelCallback),
 			};
 		} else {
 			this.flybaseListeners[bindVar] = {

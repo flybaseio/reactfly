@@ -1,7 +1,7 @@
 {
   "name": "reactfly",
   "description": "Flybase mixin for ReactJS",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "authors": [
     "Flybase (https://flybase.io/)"
   ],
@@ -26,7 +26,6 @@
     "examples",
     "node_modules",
     "bower_components",
-    "flybase.json",
     "package.json",
     "gulpfile.js",
     "changelog.txt"
