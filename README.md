@@ -1,9 +1,8 @@
-[ReactJS](https://facebook.github.io/react/) is a framework for building large, complex user
-interfaces. [Flybase](https://flybase.io/) complements it perfectly by providing an
-easy-to-use, realtime data source for populating the `state` of React components. With ReactFly, it
-only takes a few lines of JavaScript to integrate Flybase data into React apps via the
-`ReactFlyMixin`.
+[ReactJS](https://facebook.github.io/react/) is a framework for building large, complex user interfaces. 
 
+[Flybase](https://flybase.io/) complements it perfectly by providing an easy-to-use, realtime data source for populating the `state` of React components. 
+
+With ReactFly, it only takes a few lines of JavaScript to integrate Flybase data into React apps via the `ReactFlyMixin`.
 
 ## Table of Contents
 
@@ -17,10 +16,9 @@ only takes a few lines of JavaScript to integrate Flybase data into React apps v
 
 ## Getting Started With Flybase
 
-ReactFly requires [Flybase](https://flybase.io/) in order to sync and store data.
-Flybase is a suite of integrated products designed to help you develop your app, grow your user
-base, and earn money. You can [sign up here for a free account](https://app.flybase.io/).
-
+ReactFly requires a [Flybase](https://flybase.io/) account in order to sync and store data. 
+Flybase is a real-time platform designed to help you develop your app, grow your user
+base, and earn money. You can [sign up here for a free account](https://app.flybase.io/signup).
 
 ## Downloading ReactFly
 
@@ -46,4 +44,4 @@ In order to use ReactFly in your project, you need to include the following file
 
 ## Examples
 
-* [Todo App](example)
+* [Todo App](/example)

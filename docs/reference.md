@@ -34,7 +34,7 @@ of your React component. The name of the array stored in `this.state` is specifi
 |----------|------|-------------|
 | `flybaseRef` | `DatabaseRef` | The database reference to which we are binding. |
 | `bindVar` | String | The name of the attribute within `this.state` which will be bound to your database. |
-| `cancelCallback` | Function | An optional callback that will be notified if your event subscription is ever canceled because your client does not have permission to read this data (or it had permission but has now lost it). This callback will be passed an `Error` object indicating why the failure occurred. |
+| `cancelCallback` | Function | An optional callback that will be notified in case of errors. This callback will be passed an `Error` object indicating why the failure occurred. |
 
 ### Examples
 
@@ -48,8 +48,8 @@ componentWillMount: function() {
 ```
 
 Each record in the bound array will contain a `.key` property which specifies the key where the
-record is stored. So if you have data at `/items/-Jtjl482BaXBCI7brMT8`, the record for that data
-will have a `.key` of `"-Jtjl482BaXBCI7brMT8"`.
+record is stored. So if you have data with an `_id` of `uniquedocid-1`, then  the record for that data
+will have a `.key` of `"uniquedocid-1"`.
 
 If an individual record's value in the database is a primitive (boolean, string, or number), the
 value will be stored in the `.value` property. If the individual record's value is an object, each
@@ -59,12 +59,12 @@ assume the `/items` node you bind to contains the following data:
 ```js
 {
   "items": {
-    "-Jtjl482BaXBCI7brMT8": 100,
-    "-Jtjl6tmqjNeAnQvyD4l": {
-      "first": "fred",
-      "last": "Flintstone"
+    "uniquedocid-1": 100,
+    "uniquedocid-2": {
+      "first": "Lucy",
+      "last": "Furious""
     },
-    "-JtjlAXoQ3VAoNiJcka9": "foo"
+	"uniquedocid-3": "foo"
   }
 }
 ```
@@ -74,16 +74,16 @@ The resulting bound array stored in `this.state.items` will be:
 ```js
 [
   {
-    ".key": "-Jtjl482BaXBCI7brMT8",
+    ".key": "uniquedocid-1",
     ".value": 100
   },
   {
-    ".key": "-Jtjl6tmqjNeAnQvyD4l",
-    "first": "Fred"
-    "last": "Flintstone"
+    ".key": "uniquedocid-2",
+    "first": "Lucy"
+    "last": "Furious"
   },
   {
-    ".key": "-JtjlAXoQ3VAoNiJcka9",
+    ".key": "uniquedocid-3",
     ".value": "foo"
   }
 ]
@@ -104,32 +104,31 @@ variable.
 |----------|------|-------------|
 | `flybaseRef` | `DatabaseRef` | The database reference to which we are binding. |
 | `bindVar` | String | The name of the attribute within `this.state` which will be bound to your database. |
-| `cancelCallback` | Function | An optional callback that will be notified if your event subscription is ever canceled because your client does not have permission to read this data (or it had permission but has now lost it). This callback will be passed an `Error` object indicating why the failure occurred. |
+| `cancelCallback` | Function | An optional callback that will be notified in case of errors. This callback will be passed an `Error` object indicating why the failure occurred. |
 
 ### Examples
 
-The following code will make the data stored at `/users/fred` as an object and make it available as
-`this.state.user` within your component:
+With Flybase, you can perform actual queries, so for example, the following code will perform a query to return the user with an `_id` of `uniquedocid-2` as an object and make it available as `this.state.user` within your component:
 
 ```js
 componentWillMount: function() {
-  var ref = flybase.database().ref().child("users/fred");
+  var ref = flybase.where({"_id": "uniquedoc-2"}), 'items');
   this.bindAsObject(ref, "user");
 }
 ```
 
 The bound object will contain a `.key` property which specifies the key where the object is stored.
-So in the code above where we bind to `/users/fred`, the bound object will have a `.key` of `"fred"`.
+So in the code above where we bind to a user with the `_id` of `uniquedoc-2`, the bound object will have a `.key` of `"uniquedoc-2"`.
 
 If the bound node's value in the database is a primitive (boolean, string, or number), the value
 will be stored in the `.value` property. If the bound node's value is an object, each of the
 object's properties will be stored as properties of the bound object. As an example, let's assume
-the `/users/fred` node you bind comes from the following data:
+the `uniquedoc-2` document you bind comes from the following data:
 
 ```js
 {
   "users": {
-    "fred": true
+    "uniquedoc-2": true
   }
 }
 ```
@@ -138,19 +137,20 @@ The resulting bound object stored in `this.state.user` will be:
 
 ```js
 {
-  ".key": "fred",
+  ".key": "uniquedoc-2",
   ".value": true
 }
 ```
 
-As another example, let's assume the `/users/fred` node contains an object:
+As another example, let's assume the `uniquedoc-2` document contains an object:
 
 ```js
 {
   "users": {
-    "fred": {
-      "first": "Fred",
-      "last": "Flintstone"
+    {
+      "_id": "uniquedoc-2",
+      "first": "lucy",
+      "last": "Furious"
     }
   }
 }
@@ -160,18 +160,18 @@ The resulting bound object stored in `this.state.user` will be:
 
 ```js
 {
-  ".key": "fred",
-  "first": "Fred",
-  "last": "Flintstone"
+  ".key": "uniquedoc-2",
+  "first": "Lucy",
+  "last": "Furious"
 }
 ```
 
-As a final example, let's assume the `/users/fred` node does not exist (that is, it has a value of
+As a final example, let's assume the `uniquedoc-2` document does not exist (that is, it has a value of
 `null`). The resulting bound object stored in `this.state.user` will be:
 
 ```js
 {
-  ".key": "fred",
+  ".key": "uniquedoc-2",
   ".value": null
 }
 ```
