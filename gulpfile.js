@@ -12,10 +12,6 @@ var eslint = require('gulp-eslint');
 var uglify = require('gulp-uglify');
 var extReplace = require('gulp-ext-replace');
 
-// Testing
-var mocha = require('gulp-mocha');
-var istanbul = require('gulp-istanbul');
-
 
 /****************/
 /*  FILE PATHS  */

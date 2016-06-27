@@ -1,7 +1,7 @@
 {
   "name": "reactfly",
   "description": "Flybase mixin for ReactJS",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     "Flybase (https://flybase.io/)"
   ],
@@ -31,6 +31,7 @@
     "changelog.txt"
   ],
   "dependencies": {
-    "react": "0.13.x || 0.14.x || 15.x.x"
+    "react": "0.13.x || 0.14.x || 15.x.x",
+    "flybase": "1.x.x"
   }
 }

@@ -1,9 +1,4 @@
 .DS_Store
 npm-debug.log
-
-tests/key.json
-
-dist/
-coverage/
 node_modules/
 bower_components/
