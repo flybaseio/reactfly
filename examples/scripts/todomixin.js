@@ -1,6 +1,6 @@
 var flybaseRef = new Flybase("YOUR-API-KEY", "sample", "todo");
 
-var TodoList3 = React.createClass({
+var TodoListMixin = React.createClass({
 	render: function() {
 		var _this = this;
 		var createItem = function(item, index) {
@@ -18,7 +18,7 @@ var TodoList3 = React.createClass({
 	}
 });
 
-var TodoApp3 = React.createClass({
+var TodoAppMixin = React.createClass({
 	mixins: [ReactFlyMixin],
 
 	getInitialState: function() {
@@ -55,7 +55,7 @@ var TodoApp3 = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<TodoList3 items={ this.state.items } removeItem={ this.removeItem } />
+				<TodoListMixin items={ this.state.items } removeItem={ this.removeItem } />
 				<form onSubmit={ this.handleSubmit }>
 					<input onChange={ this.onChange } value={ this.state.text } />
 					<button>{ 'Add #' + (this.state.items.length + 1) }</button>
@@ -65,4 +65,4 @@ var TodoApp3 = React.createClass({
 	}
 });
 
-ReactDOM.render(<TodoApp3 />, document.getElementById('todoApp3'));
+ReactDOM.render(<TodoAppMixin />, document.getElementById('todoAppMixin'));

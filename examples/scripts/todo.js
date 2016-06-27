@@ -1,4 +1,4 @@
-var TodoList2 = React.createClass({
+var TodoListPlain = React.createClass({
 	render: function() {
 		var _this = this;
 		var createItem = function(item, index) {
@@ -14,7 +14,7 @@ var TodoList2 = React.createClass({
 	}
 });
 	
-var TodoApp2 = React.createClass({
+var TodoAppPlain = React.createClass({
 	getInitialState: function() {
 		return {
 			items: [],
@@ -76,15 +76,11 @@ var TodoApp2 = React.createClass({
 		}.bind(this));
 
 	},
-	componentWillUnmount: function() {
-//		this.flybaseRef.off();
-	},
 	onChange: function(e) {
 		this.setState({text: e.target.value});
 	},
 	removeItem: function(key) {
-		var flybaseRef = new Flybase("74c8064f-cd6f-4c07-8baf-b1d241496eec", "sample", "todo");	  
-		flybaseRef.remove(key);
+		this.flybaseRef.remove(key);
 	},
 	handleSubmit: function(e) {
 		e.preventDefault();
@@ -100,7 +96,7 @@ var TodoApp2 = React.createClass({
 	render: function() {
 		return (
 			<div>
-			<TodoList2 items={ this.state.items } removeItem={ this.removeItem } />
+			<TodoListPlain items={ this.state.items } removeItem={ this.removeItem } />
 			<form onSubmit={ this.handleSubmit }>
 			<input onChange={ this.onChange } value={ this.state.text } />
 			<button>{ 'Add #' + (this.state.items.length + 1) }</button>
@@ -110,4 +106,4 @@ var TodoApp2 = React.createClass({
 	}
 });
 	
-ReactDOM.render(<TodoApp2 />, document.getElementById('todoApp2'));
+ReactDOM.render(<TodoAppPlain />, document.getElementById('todoAppPlain'));

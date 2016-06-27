@@ -4,16 +4,6 @@
 
 With ReactFly, it only takes a few lines of JavaScript to integrate Flybase data into React apps via the `ReactFlyMixin`.
 
-## Table of Contents
-
- * [Getting Started With Flybase](#getting-started-with-flybase)
- * [Downloading ReactFly](#downloading-reactfly)
- * [Documentation](#documentation)
- * [Examples](#examples)
- * [Migration Guides](#migration-guides)
- * [Contributing](#contributing)
-
-
 ## Getting Started With Flybase
 
 ReactFly requires a [Flybase](https://flybase.io/) account in order to sync and store data. 
@@ -36,12 +26,27 @@ In order to use ReactFly in your project, you need to include the following file
 <script src="https://cdn.flybase.io/reactfly.min.js"></script>
 ```
 
+You can also install ReactFly via npm or Bower. If downloading via npm, you will have to install
+React and Flybase separately (that is, they are `peerDependencies`):
+
+```bash
+$ npm install reactfly react flybase --save
+```
+
+On Bower, the React and Flybase dependencies will be downloaded automatically alongside ReactFly:
+
+
+```bash
+$ bower install reactfly --save
+```
+
+
 ## Documentation
 
-* [Quickstart](docs/quickstart.md)
-* [Guide](docs/guide.md)
-* [API Reference](docs/reference.md)
+* [Quickstart](https://docs.flybase.io/web/libraries/react/quickstart)
+* [Guide](https://docs.flybase.io/web/libraries/react/guide)
+* [API Reference](https://docs.flybase.io/web/libraries/react/reference)
 
 ## Examples
 
-* [Todo App](/examples)
+* [Todo App](examples/)
