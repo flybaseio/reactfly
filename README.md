@@ -43,9 +43,7 @@ $ bower install reactfly --save
 
 ## Documentation
 
-* [Quickstart](https://docs.flybase.io/web/libraries/react/quickstart)
-* [Guide](https://docs.flybase.io/web/libraries/react/guide)
-* [API Reference](https://docs.flybase.io/web/libraries/react/reference)
+* [Quickstart](https://docs.flybase.io/web/libraries/react/)
 
 ## Examples
 
