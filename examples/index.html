@@ -3,30 +3,40 @@
 <head>
 	<meta charset="utf-8">
 	<title>React Tutorial</title>
-	<link rel="stylesheet" href="css/base.css" />
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.16/browser.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.6.2/remarkable.min.js"></script>
 
-
+	<!-- Flybase & ReactFly -->
 	<script src="https://cdn.flybase.io/flybase.js"></script>
 	<script src="https://cdn.flybase.io/reactfly.min.js"></script>
 </head>
 <body>
-	<div id="content"></div>
-	<div class="todoAppContainer">
-		<h2>React + Plain Flybase</h2>
-		<div id="todoAppPlain"></div>
+	<div class="container">
+		<div id="content"></div>
+		<div class="row">
+			<div class="col-md-5">
+				<div class="panel panel-primary">
+					<div class="panel-heading">React + Plain Flybase</div>
+					<div class="panel-body">
+						<div id="todoAppPlain"></div>
+					</div>
+				</div>				
+			</div>
+			<div class="col-md-5">
+				<div class="panel panel-primary">
+					<div class="panel-heading">React + Flybase Mixin</div>
+					<div class="panel-body">
+						<div id="todoAppMixin"></div>
+					</div>
+				</div>				
+			</div>
+		</div>
 	</div>
-	<hr />
-	<div class="todoAppContainer">
-		<h2>React + Flybase Mixin</h2>
-		<div id="todoAppMixin"></div>
-	</div>
-
-	<script type="text/babel" src="scripts/todo.js"></script>
-	<script type="text/babel" src="scripts/todomixin.js"></script>
+	<script type="text/babel" src="todo.js"></script>
+	<script type="text/babel" src="todomixin.js"></script>
 </body>
 </html>
