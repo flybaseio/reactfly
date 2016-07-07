@@ -1,7 +1,7 @@
 {
   "name": "reactfly",
   "description": "Flybase mixin for ReactJS",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "authors": [
     "Flybase (https://flybase.io/)"
   ],
